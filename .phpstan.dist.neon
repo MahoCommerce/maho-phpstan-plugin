@@ -1,0 +1,13 @@
+includes:
+    - vendor/phpstan/phpstan/conf/bleedingEdge.neon
+    - vendor/phpstan/phpstan-strict-rules/rules.neon
+    - vendor/phpstan/phpstan-deprecation-rules/rules.neon
+parameters:
+    phpVersion:
+        min: 80200
+        max: 80499
+    scanFiles:
+        - stubs/mock.stub
+    paths:
+        - src
+    level: 10
