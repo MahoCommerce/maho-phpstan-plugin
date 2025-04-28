@@ -38,6 +38,11 @@ final class PublicPropertyReflection implements PropertyReflection
         return $this->originalProperty->getDocComment();
     }
 
+    public function getName(): string
+    {
+        return $this->originalProperty->getName();
+    }
+
     public function getReadableType(): Type
     {
         return $this->originalProperty->getReadableType();
