@@ -7,7 +7,7 @@ parameters:
         min: 80200
         max: 80499
     scanFiles:
-        - stubs/mock.stub
+        - mock/maho-phpstan-plugin/Mage.php
     paths:
         - src
     level: 10

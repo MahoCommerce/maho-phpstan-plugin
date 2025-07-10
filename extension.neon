@@ -6,6 +6,8 @@ parameters:
     magentoRootPath: null # Deprecated
     enforceMagicMethodDocBlock: false
     useLocalXml: false
+    scanDirectories:
+        - mock/maho
 
 services:
     mageCoreConfig:
