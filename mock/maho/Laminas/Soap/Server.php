@@ -2,7 +2,8 @@
 
 namespace Laminas\Soap;
 
-class Server {
+class Server
+{
 
     /**
      * @param  string $wsdl
