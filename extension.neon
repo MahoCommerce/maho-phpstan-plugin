@@ -6,9 +6,6 @@ parameters:
     magentoRootPath: null # Deprecated
     enforceMagicMethodDocBlock: false
     useLocalXml: false
-    stubFiles:
-        - stubs/Laminas/Soap/Server.php
-        - stubs/Laminas/Soap/Exception/ExceptionInterface.php
 
 services:
     mageCoreConfig:
