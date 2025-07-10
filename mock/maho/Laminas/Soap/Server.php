@@ -4,7 +4,6 @@ namespace Laminas\Soap;
 
 class Server
 {
-
     /**
      * @param  string $wsdl
      * @param  array $options
