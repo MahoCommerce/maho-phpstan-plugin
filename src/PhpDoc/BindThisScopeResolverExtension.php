@@ -82,7 +82,7 @@ final class BindThisScopeResolverExtension extends NodeVisitorAbstract implement
             {
                 return new WrappedExtendedPropertyReflection(
                     $propertyName,
-                    new PublicPropertyReflection(parent::getProperty($propertyName, $scope))
+                    new PublicPropertyReflection(parent::getProperty($propertyName, $scope), $propertyName)
                 );
             }
         };
