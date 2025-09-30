@@ -16,8 +16,6 @@ use PHPStan\PhpDocParser\Ast\Type\TypeNode;
 use PHPStan\Reflection\ClassMemberAccessAnswerer;
 use PHPStan\Reflection\ExtendedMethodReflection;
 use PHPStan\Reflection\ExtendedPropertyReflection;
-use PHPStan\Reflection\WrappedExtendedMethodReflection;
-use PHPStan\Reflection\WrappedExtendedPropertyReflection;
 use PHPStan\Type\ObjectType;
 use PHPStan\Type\Type;
 use function count;
@@ -74,16 +72,11 @@ final class BindThisScopeResolverExtension extends NodeVisitorAbstract implement
         return new class($className) extends ObjectType {
             public function getMethod(string $methodName, ClassMemberAccessAnswerer $scope): ExtendedMethodReflection
             {
-                return new WrappedExtendedMethodReflection(
-                    new PublicMethodReflection(parent::getMethod($methodName, $scope))
-                );
+                return new PublicMethodReflection(parent::getMethod($methodName, $scope));
             }
             public function getProperty(string $propertyName, ClassMemberAccessAnswerer $scope): ExtendedPropertyReflection
             {
-                return new WrappedExtendedPropertyReflection(
-                    $propertyName,
-                    new PublicPropertyReflection(parent::getProperty($propertyName, $scope))
-                );
+                return new PublicPropertyReflection(parent::getProperty($propertyName, $scope));
             }
         };
     }

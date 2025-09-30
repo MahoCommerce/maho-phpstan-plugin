@@ -5,6 +5,7 @@ namespace Maho\PHPStanPlugin\Reflection;
 use PHPStan\Reflection\ClassReflection;
 use PHPStan\Reflection\MethodReflection;
 use PHPStan\Reflection\MethodsClassReflectionExtension;
+use PHPStan\Reflection\ReflectionProvider;
 use PHPStan\ShouldNotHappenException;
 use Varien_Object;
 use function in_array;
@@ -12,7 +13,7 @@ use function substr;
 
 final class VarienObjectReflectionExtension implements MethodsClassReflectionExtension
 {
-    public function __construct(private bool $enforceDocBlock)
+    public function __construct(private bool $enforceDocBlock, private ReflectionProvider $reflectionProvider)
     {
     }
 
@@ -29,8 +30,11 @@ final class VarienObjectReflectionExtension implements MethodsClassReflectionExt
             return false;
         }
 
-        if ($classReflection->isSubclassOf(Varien_Object::class) && $this->enforceDocBlock) {
-            return false;
+        if ($this->enforceDocBlock && $this->reflectionProvider->hasClass(Varien_Object::class)) {
+            $varienObjectReflection = $this->reflectionProvider->getClass(Varien_Object::class);
+            if ($classReflection->isSubclassOfClass($varienObjectReflection)) {
+                return false;
+            }
         }
 
         return true;

@@ -5,14 +5,23 @@ namespace Maho\PHPStanPlugin\Reflection;
 use PHPStan\Reflection\Assertions;
 use PHPStan\Reflection\ClassMemberReflection;
 use PHPStan\Reflection\ClassReflection;
-use PHPStan\Reflection\MethodReflection;
+use PHPStan\Reflection\ExtendedMethodReflection;
 use PHPStan\Reflection\ParametersAcceptor;
 use PHPStan\TrinaryLogic;
 use PHPStan\Type\Type;
 
-final class PublicMethodReflection implements MethodReflection
+/**
+ * Wrapper that exposes protected/private methods as public.
+ *
+ * Note: This class implements PHPStan\Reflection\ExtendedMethodReflection which is not
+ * covered by PHPStan's backward compatibility promise. This is necessary for PHPStan
+ * extension development and is an accepted trade-off for this plugin.
+ *
+ * @phpstan-ignore phpstanApi.interface
+ */
+final class PublicMethodReflection implements ExtendedMethodReflection
 {
-    public function __construct(private MethodReflection $originalMethod)
+    public function __construct(private ExtendedMethodReflection $originalMethod)
     {
     }
 
@@ -52,7 +61,7 @@ final class PublicMethodReflection implements MethodReflection
     }
 
     /**
-     * @return list<ParametersAcceptor>
+     * @return list<\PHPStan\Reflection\ExtendedParametersAcceptor>
      */
     public function getVariants(): array
     {
@@ -87,5 +96,74 @@ final class PublicMethodReflection implements MethodReflection
     public function hasSideEffects(): TrinaryLogic
     {
         return $this->originalMethod->hasSideEffects();
+    }
+
+    public function acceptsNamedArguments(): TrinaryLogic
+    {
+        return $this->originalMethod->acceptsNamedArguments();
+    }
+
+    public function getAsserts(): Assertions
+    {
+        return $this->originalMethod->getAsserts();
+    }
+
+    public function getSelfOutType(): ?Type
+    {
+        return $this->originalMethod->getSelfOutType();
+    }
+
+    public function isAbstract(): TrinaryLogic
+    {
+        $result = $this->originalMethod->isAbstract();
+        return $result instanceof TrinaryLogic ? $result : TrinaryLogic::createFromBoolean($result);
+    }
+
+    public function getNamedArgumentsVariants(): ?array
+    {
+        return $this->originalMethod->getNamedArgumentsVariants();
+    }
+
+    public function getOnlyVariant(): \PHPStan\Reflection\ExtendedParametersAcceptor
+    {
+        $variants = $this->getVariants();
+        if (count($variants) !== 1) {
+            throw new \PHPStan\ShouldNotHappenException('Expected exactly one variant, got ' . count($variants));
+        }
+        return $variants[0];
+    }
+
+    public function isFinalByKeyword(): TrinaryLogic
+    {
+        return $this->originalMethod->isFinalByKeyword();
+    }
+
+    public function returnsByReference(): TrinaryLogic
+    {
+        return $this->originalMethod->returnsByReference();
+    }
+
+    public function isBuiltin(): bool
+    {
+        $result = $this->originalMethod->isBuiltin();
+        return $result instanceof TrinaryLogic ? $result->yes() : $result;
+    }
+
+    public function mustUseReturnValue(): TrinaryLogic
+    {
+        return $this->originalMethod->mustUseReturnValue();
+    }
+
+    public function isPure(): TrinaryLogic
+    {
+        return $this->originalMethod->isPure();
+    }
+
+    /**
+     * @return list<\PHPStan\Reflection\AttributeReflection>
+     */
+    public function getAttributes(): array
+    {
+        return $this->originalMethod->getAttributes();
     }
 }

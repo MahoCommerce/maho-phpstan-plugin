@@ -64,10 +64,10 @@ final class MageTypeExtension implements DynamicMethodReturnTypeExtension, Dynam
 
         foreach ($aliases as $alias) {
             $className = $fn($alias->getValue());
-            if ($className === false || class_exists($className) === false) {
-                $returnTypes[] = new ConstantBooleanType(false);
-            } else {
+            if (is_string($className) && class_exists($className)) {
                 $returnTypes[] = new ObjectType($className);
+            } else {
+                $returnTypes[] = new ConstantBooleanType(false);
             }
         }
 

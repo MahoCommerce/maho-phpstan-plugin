@@ -35,7 +35,7 @@ final class MageCoreConfig
             'Mage_Core_Model_Config::getModelInstance',
             'Mage_Core_Model_Factory::getModel',
             'Mage_Core_Model_Factory::getSingleton'
-                => fn (string $alias): string|false => $this->getConfig()->getModelClassName($alias),
+                => fn (string $alias): string => $this->getConfig()->getModelClassName($alias),
 
             'Mage::getResourceModel',
             'Mage::getResourceSingleton',
@@ -53,17 +53,17 @@ final class MageCoreConfig
             'Mage_Core_Model_Layout::addBlock',
             'Mage_Core_Model_Layout::createBlock',
             'Mage_Core_Model_Layout::getBlockSingleton'
-                => fn (string $alias): string|false => $this->getConfig()->getBlockClassName($alias),
+                => fn (string $alias): string => $this->getConfig()->getBlockClassName($alias),
 
             'Mage::helper',
             'Mage_Core_Block_Abstract::helper',
             'Mage_Core_Model_Config::getHelperInstance',
             'Mage_Core_Model_Factory::getHelper',
             'Mage_Core_Model_Layout::helper'
-                => fn (string $alias): string|false => $this->getConfig()->getHelperClassName($alias),
+                => fn (string $alias): string => $this->getConfig()->getHelperClassName($alias),
 
             'Mage_Core_Model_Config::getNodeClassInstance'
-                => fn (string $path): string|false => $this->getConfig()->getNodeClassName($path),
+                => fn (string $path): string => $this->getConfig()->getNodeClassName($path),
 
             default => null,
         };
