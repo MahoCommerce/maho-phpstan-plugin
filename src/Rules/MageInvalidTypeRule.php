@@ -71,9 +71,12 @@ final class MageInvalidTypeRule implements Rule
 
         foreach ($aliases as $alias) {
             $className = $fn($alias->getValue());
+            if (is_string($className) && class_exists($className)) {
+                continue;
+            }
             if ($className === false) {
                 $invalidTypes[] = 'bool(false)';
-            } elseif (class_exists($className) === false) {
+            } else {
                 $invalidTypes[] = $className;
             }
         }
