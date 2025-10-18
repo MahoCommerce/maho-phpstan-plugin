@@ -8,23 +8,18 @@ final class Mage
     /**
      * Get initialized application object.
      *
-     * @param string $code
-     * @param string $type
-     * @param string|array $options
+     * @param string|array<string, mixed> $options
      * @return Mage_Core_Model_App
      */
-    public static function app($code = '', $type = 'store', $options = [])
+    public static function app(string $code = '', string $type = 'store', $options = [])
     {
     }
 
     /**
-     * @static
-     * @param string $code
-     * @param string $type
-     * @param array $options
-     * @param string|array $modules
+     * @param array<string, mixed> $options
+     * @param string|array<int, string> $modules
      */
-    public static function init($code = '', $type = 'store', $options = [], $modules = [])
+    public static function init(string $code = '', string $type = 'store', array $options = [], $modules = []): void
     {
     }
 }
@@ -51,62 +46,68 @@ class Mage_Core_Model_Config
 {
     /**
      * Retrieve class name from config.xml node
+     *
+     * @return string
      */
-    public function getNodeClassName(string $path): string
+    public function getNodeClassName(string $path)
     {
     }
 
     /**
      * Retrieve block class name
      *
-     * @param string $blockType
      * @return string
      */
-    public function getBlockClassName($blockType)
+    public function getBlockClassName(string $blockType)
     {
     }
 
     /**
      * Retrieve helper class name
      *
-     * @param string $helperAlias
      * @return string
      */
-    public function getHelperClassName($helperAlias)
+    public function getHelperClassName(string $helperAlias)
     {
     }
 
     /**
      * Retrieve model class name
      *
-     * @param string $modelAlias
      * @return string
      */
-    public function getModelClassName($modelAlias)
+    public function getModelClassName(string $modelAlias)
     {
     }
 
     /**
      * Retrieve resource model class name
      *
-     * @param string $modelAlias
      * @return string|false
      */
-    public function getResourceModelClassName($modelAlias)
+    public function getResourceModelClassName(string $modelAlias)
     {
     }
 
     /**
      * Retrieve resource helper class name
+     *
+     * @return string|false
      */
-    public function getResourceHelperClassName(string $moduleAlias): string|false
+    public function getResourceHelperClassName(string $moduleAlias)
     {
     }
 }
 
 /**
- * Varien Object
+ * Varien Object (legacy)
+ * @implements ArrayAccess<string, mixed>
  */
 class Varien_Object implements ArrayAccess, JsonSerializable
 {
+    public function offsetExists(mixed $offset): bool {}
+    public function offsetGet(mixed $offset): mixed {}
+    public function offsetSet(mixed $offset, mixed $value): void {}
+    public function offsetUnset(mixed $offset): void {}
+    public function jsonSerialize(): mixed {}
 }

@@ -13,6 +13,12 @@ use function substr;
 
 final class VarienObjectReflectionExtension implements MethodsClassReflectionExtension
 {
+    /** @var array<string> */
+    private const SUPPORTED_BASE_CLASSES = [
+        Varien_Object::class,
+        'Maho\\DataObject',
+    ];
+
     public function __construct(private bool $enforceDocBlock, private ReflectionProvider $reflectionProvider)
     {
     }
@@ -22,7 +28,17 @@ final class VarienObjectReflectionExtension implements MethodsClassReflectionExt
         if (!in_array(substr($methodName, 0, 3), ['get', 'set', 'uns', 'has'], true)) {
             return false;
         }
-        if (!$classReflection->is(Varien_Object::class)) {
+
+        // Check if class is a subclass of any supported base class
+        $isSupportedClass = false;
+        foreach (self::SUPPORTED_BASE_CLASSES as $baseClass) {
+            if ($classReflection->is($baseClass)) {
+                $isSupportedClass = true;
+                break;
+            }
+        }
+
+        if (!$isSupportedClass) {
             return false;
         }
 
@@ -30,10 +46,14 @@ final class VarienObjectReflectionExtension implements MethodsClassReflectionExt
             return false;
         }
 
-        if ($this->enforceDocBlock && $this->reflectionProvider->hasClass(Varien_Object::class)) {
-            $varienObjectReflection = $this->reflectionProvider->getClass(Varien_Object::class);
-            if ($classReflection->isSubclassOfClass($varienObjectReflection)) {
-                return false;
+        if ($this->enforceDocBlock) {
+            foreach (self::SUPPORTED_BASE_CLASSES as $baseClass) {
+                if ($this->reflectionProvider->hasClass($baseClass)) {
+                    $baseReflection = $this->reflectionProvider->getClass($baseClass);
+                    if ($classReflection->isSubclassOfClass($baseReflection)) {
+                        return false;
+                    }
+                }
             }
         }
 

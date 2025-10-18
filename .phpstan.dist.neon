@@ -8,6 +8,7 @@ parameters:
         max: 80499
     scanFiles:
         - mock/maho-phpstan-plugin/Mage.php
+        - mock/maho-phpstan-plugin/DataObject.php
     paths:
         - src
     level: 10

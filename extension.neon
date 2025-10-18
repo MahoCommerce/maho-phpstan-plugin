@@ -8,6 +8,7 @@ parameters:
     useLocalXml: false
     scanDirectories:
         - mock/maho
+        - mock/maho-phpstan-plugin
 
 services:
     mageCoreConfig:
@@ -53,7 +54,7 @@ services:
         tags:
             - phpstan.rules.rule
 
-    ## Class Reflection Extension for Varien_Object's magic methods
+    ## Class Reflection Extension for Varien_Object and Maho\DataObject magic methods
     -
         class: Maho\PHPStanPlugin\Reflection\VarienObjectReflectionExtension
         arguments:
