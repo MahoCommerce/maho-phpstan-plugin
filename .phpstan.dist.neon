@@ -6,7 +6,7 @@ parameters:
     phpVersion:
         min: 80200
         max: 80499
-    stubFiles:
+    scanFiles:
         - mock/maho-phpstan-plugin/Mage.php
         - mock/maho-phpstan-plugin/DataObject.php
     paths:
