@@ -8,24 +8,18 @@ final class Mage
     /**
      * Get initialized application object.
      *
-     * @param string $code
-     * @param string $type
      * @param string|array<string, mixed> $options
      * @return Mage_Core_Model_App
      */
-    public static function app($code = '', $type = 'store', $options = []): Mage_Core_Model_App
+    public static function app(string $code = '', string $type = 'store', $options = [])
     {
-        return new Mage_Core_Model_App();
     }
 
     /**
-     * @static
-     * @param string $code
-     * @param string $type
      * @param array<string, mixed> $options
      * @param string|array<int, string> $modules
      */
-    public static function init($code = '', $type = 'store', $options = [], $modules = []): void
+    public static function init(string $code = '', string $type = 'store', array $options = [], $modules = []): void
     {
     }
 }
@@ -40,9 +34,8 @@ class Mage_Core_Model_App
      *
      * @return Mage_Core_Model_Config
      */
-    public function getConfig(): Mage_Core_Model_Config
+    public function getConfig()
     {
-        return new Mage_Core_Model_Config();
     }
 }
 
@@ -53,62 +46,56 @@ class Mage_Core_Model_Config
 {
     /**
      * Retrieve class name from config.xml node
+     *
+     * @return string
      */
-    public function getNodeClassName(string $path): string
+    public function getNodeClassName(string $path)
     {
-        return '';
     }
 
     /**
      * Retrieve block class name
      *
-     * @param string $blockType
      * @return string
      */
-    public function getBlockClassName($blockType): string
+    public function getBlockClassName(string $blockType)
     {
-        return '';
     }
 
     /**
      * Retrieve helper class name
      *
-     * @param string $helperAlias
      * @return string
      */
-    public function getHelperClassName($helperAlias): string
+    public function getHelperClassName(string $helperAlias)
     {
-        return '';
     }
 
     /**
      * Retrieve model class name
      *
-     * @param string $modelAlias
      * @return string
      */
-    public function getModelClassName($modelAlias): string
+    public function getModelClassName(string $modelAlias)
     {
-        return '';
     }
 
     /**
      * Retrieve resource model class name
      *
-     * @param string $modelAlias
      * @return string|false
      */
-    public function getResourceModelClassName($modelAlias): string|false
+    public function getResourceModelClassName(string $modelAlias)
     {
-        return '';
     }
 
     /**
      * Retrieve resource helper class name
+     *
+     * @return string|false
      */
-    public function getResourceHelperClassName(string $moduleAlias): string|false
+    public function getResourceHelperClassName(string $moduleAlias)
     {
-        return '';
     }
 }
 
@@ -118,39 +105,9 @@ class Mage_Core_Model_Config
  */
 class Varien_Object implements ArrayAccess, JsonSerializable
 {
-    /**
-     * @param mixed $offset
-     */
-    public function offsetExists($offset): bool
-    {
-        return false;
-    }
-
-    /**
-     * @param mixed $offset
-     */
-    public function offsetGet($offset): mixed
-    {
-        return null;
-    }
-
-    /**
-     * @param mixed $offset
-     * @param mixed $value
-     */
-    public function offsetSet($offset, $value): void
-    {
-    }
-
-    /**
-     * @param mixed $offset
-     */
-    public function offsetUnset($offset): void
-    {
-    }
-
-    public function jsonSerialize(): mixed
-    {
-        return [];
-    }
+    public function offsetExists(mixed $offset): bool {}
+    public function offsetGet(mixed $offset): mixed {}
+    public function offsetSet(mixed $offset, mixed $value): void {}
+    public function offsetUnset(mixed $offset): void {}
+    public function jsonSerialize(): mixed {}
 }
