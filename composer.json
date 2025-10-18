@@ -16,6 +16,11 @@
             "Maho\\PHPStanPlugin\\": "src/"
         }
     },
+    "autoload-dev": {
+        "classmap": [
+            "mock/maho-phpstan-plugin/"
+        ]
+    },
     "extra": {
         "phpstan": {
             "includes": [
