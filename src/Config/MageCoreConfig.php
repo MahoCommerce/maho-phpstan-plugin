@@ -19,7 +19,11 @@ final class MageCoreConfig
     {
         if ($this->hasInitialized === false && $this->useLocalXml === false) {
             $this->hasInitialized = true;
-            Mage::init('', 'store', ['is_installed' => false]);
+            // Use a separate cache directory for PHPStan to avoid corrupting the app cache
+            Mage::init('', 'store', [
+                'is_installed' => false,
+                'cache_dir' => BP . '/var/phpstan-cache',
+            ]);
         }
         return Mage::app()->getConfig();
     }

@@ -1,6 +1,11 @@
 <?php declare(strict_types=1);
 
 /**
+ * Maho base path constant - defined at runtime by Maho bootstrap
+ */
+const BP = '';
+
+/**
  * Main Mage hub class
  */
 final class Mage
