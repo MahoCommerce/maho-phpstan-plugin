@@ -2,6 +2,7 @@
 
 namespace Maho\PHPStanPlugin\Reflection;
 
+use PHPStan\PhpDoc\ResolvedPhpDocBlock;
 use PHPStan\Reflection\Assertions;
 use PHPStan\Reflection\ClassMemberReflection;
 use PHPStan\Reflection\ClassReflection;
@@ -165,5 +166,10 @@ final class PublicMethodReflection implements ExtendedMethodReflection
     public function getAttributes(): array
     {
         return $this->originalMethod->getAttributes();
+    }
+
+    public function getResolvedPhpDoc(): ?ResolvedPhpDocBlock
+    {
+        return $this->originalMethod->getResolvedPhpDoc();
     }
 }
