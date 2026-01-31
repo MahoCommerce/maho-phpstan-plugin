@@ -74,9 +74,15 @@ final class BindThisScopeResolverExtension extends NodeVisitorAbstract implement
             {
                 return new PublicMethodReflection(parent::getMethod($methodName, $scope));
             }
+
             public function getProperty(string $propertyName, ClassMemberAccessAnswerer $scope): ExtendedPropertyReflection
             {
                 return new PublicPropertyReflection(parent::getProperty($propertyName, $scope));
+            }
+
+            public function getInstanceProperty(string $propertyName, ClassMemberAccessAnswerer $scope): ExtendedPropertyReflection
+            {
+                return new PublicPropertyReflection(parent::getInstanceProperty($propertyName, $scope));
             }
         };
     }
