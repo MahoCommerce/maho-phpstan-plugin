@@ -15,4 +15,8 @@ class Server
     public function setClass(string|object $class, string $namespace = '', mixed $argv = null): void
     {
     }
+
+    public function setReturnResponse(bool $flag = true): Server
+    {
+    }
 }
