@@ -4,7 +4,7 @@
     "type": "phpstan-extension",
     "license": "MIT",
     "require": {
-        "php": ">= 8.2",
+        "php": ">=8.3",
         "phpstan/phpstan": "^2.1"
     },
     "require-dev": {
@@ -26,6 +26,11 @@
             "includes": [
                 "extension.neon"
             ]
+        }
+    },
+    "config": {
+        "platform": {
+            "php": "8.3"
         }
     }
 }
