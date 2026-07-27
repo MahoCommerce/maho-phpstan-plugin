@@ -161,6 +161,14 @@ final class PublicMethodReflection implements ExtendedMethodReflection
     }
 
     /**
+     * @return array<string, TrinaryLogic>
+     */
+    public function getPureUnlessCallableIsImpureParameters(): array
+    {
+        return $this->originalMethod->getPureUnlessCallableIsImpureParameters();
+    }
+
+    /**
      * @return list<\PHPStan\Reflection\AttributeReflection>
      */
     public function getAttributes(): array
