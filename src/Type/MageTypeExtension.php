@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Maho\PHPStanPlugin\Type;
 
@@ -13,6 +15,7 @@ use PHPStan\Type\DynamicStaticMethodReturnTypeExtension;
 use PHPStan\Type\ObjectType;
 use PHPStan\Type\Type;
 use PHPStan\Type\TypeCombinator;
+
 use function class_exists;
 use function count;
 use function is_callable;
@@ -22,9 +25,7 @@ final class MageTypeExtension implements DynamicMethodReturnTypeExtension, Dynam
     /**
      * @param class-string $className
      */
-    public function __construct(private string $className, private MageCoreConfig $mageCoreConfig)
-    {
-    }
+    public function __construct(private string $className, private MageCoreConfig $mageCoreConfig) {}
 
     /**
      * @return class-string
@@ -38,7 +39,7 @@ final class MageTypeExtension implements DynamicMethodReturnTypeExtension, Dynam
     {
         $fn = $this->mageCoreConfig->getClassNameConverterFunction(
             $methodReflection->getDeclaringClass()->getName(),
-            $methodReflection->getName()
+            $methodReflection->getName(),
         );
 
         return is_callable($fn);
@@ -52,7 +53,7 @@ final class MageTypeExtension implements DynamicMethodReturnTypeExtension, Dynam
 
         $fn = $this->mageCoreConfig->getClassNameConverterFunction(
             $methodReflection->getDeclaringClass()->getName(),
-            $methodReflection->getName()
+            $methodReflection->getName(),
         );
 
         if (!is_callable($fn)) {

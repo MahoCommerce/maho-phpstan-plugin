@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Maho\PHPStanPlugin\Reflection;
 
@@ -18,9 +20,7 @@ use PHPStan\Type\Type;
  */
 final class PublicPropertyReflection implements ExtendedPropertyReflection
 {
-    public function __construct(private ExtendedPropertyReflection $originalProperty)
-    {
-    }
+    public function __construct(private ExtendedPropertyReflection $originalProperty) {}
 
     public function getDeclaringClass(): ClassReflection
     {
