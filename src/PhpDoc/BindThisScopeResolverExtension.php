@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Maho\PHPStanPlugin\PhpDoc;
 
@@ -18,6 +20,7 @@ use PHPStan\Reflection\ExtendedMethodReflection;
 use PHPStan\Reflection\ExtendedPropertyReflection;
 use PHPStan\Type\ObjectType;
 use PHPStan\Type\Type;
+
 use function count;
 use function is_string;
 use function preg_replace;
@@ -69,7 +72,7 @@ final class BindThisScopeResolverExtension extends NodeVisitorAbstract implement
 
         $className = $nameScope->resolveStringName($arguments[0]->name);
 
-        return new class($className) extends ObjectType {
+        return new class ($className) extends ObjectType {
             public function getMethod(string $methodName, ClassMemberAccessAnswerer $scope): ExtendedMethodReflection
             {
                 return new PublicMethodReflection(parent::getMethod($methodName, $scope));

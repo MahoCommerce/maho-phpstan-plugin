@@ -9,7 +9,9 @@
     },
     "require-dev": {
         "phpstan/phpstan-strict-rules": "^2.0",
-        "phpstan/phpstan-deprecation-rules": "^2.0"
+        "phpstan/phpstan-deprecation-rules": "^2.0",
+        "friendsofphp/php-cs-fixer": "^3.95",
+        "rector/rector": "^2.6"
     },
     "autoload": {
         "psr-4": {

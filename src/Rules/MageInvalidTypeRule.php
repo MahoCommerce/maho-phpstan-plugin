@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Maho\PHPStanPlugin\Rules;
 
@@ -8,6 +10,7 @@ use PHPStan\Analyser\Scope;
 use PHPStan\Node\Printer\ExprPrinter;
 use PHPStan\Rules\Rule;
 use PHPStan\Rules\RuleErrorBuilder;
+
 use function class_exists;
 use function count;
 use function implode;
@@ -20,9 +23,7 @@ use function sprintf;
  */
 final class MageInvalidTypeRule implements Rule
 {
-    public function __construct(private ExprPrinter $exprPrinter, private MageCoreConfig $mageCoreConfig)
-    {
-    }
+    public function __construct(private ExprPrinter $exprPrinter, private MageCoreConfig $mageCoreConfig) {}
 
     public function getNodeType(): string
     {
@@ -59,7 +60,7 @@ final class MageInvalidTypeRule implements Rule
 
         $fn = $this->mageCoreConfig->getClassNameConverterFunction(
             $methodReflection->getDeclaringClass()->getName(),
-            $methodReflection->getName()
+            $methodReflection->getName(),
         );
 
         if (!is_callable($fn)) {
@@ -90,7 +91,7 @@ final class MageInvalidTypeRule implements Rule
                 'Call to %s resulted in invalid type %s.',
                 ltrim($this->exprPrinter->printExpr($methodCall), '\\'),
                 implode('|', $invalidTypes),
-            ))->identifier('mage.invalidType')->build()
+            ))->identifier('mage.invalidType')->build(),
         ];
     }
 }

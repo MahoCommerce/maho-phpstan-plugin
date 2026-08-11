@@ -4,6 +4,9 @@
 # composer
 /vendor
 
+# PHP CS Fixer
+.php-cs-fixer.cache
+
 # PhpStan
 .phpstan*.neon
 phpstan*.neon

@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Maho\PHPStanPlugin\Reflection;
 
@@ -8,14 +10,13 @@ use PHPStan\Reflection\FunctionVariant;
 use PHPStan\Reflection\MethodReflection;
 use PHPStan\TrinaryLogic;
 use PHPStan\Type\Type;
+
 use function array_map;
 use function array_slice;
 
 final class MagicMethodReflection implements MethodReflection
 {
-    public function __construct(private MethodReflection $originalMethod, private string $methodName)
-    {
-    }
+    public function __construct(private MethodReflection $originalMethod, private string $methodName) {}
 
     public function getDeclaringClass(): ClassReflection
     {
@@ -65,7 +66,7 @@ final class MagicMethodReflection implements MethodReflection
                 array_slice($variant->getParameters(), 1),
                 $variant->isVariadic(),
                 $variant->getReturnType(),
-            )
+            ),
         ];
     }
 
