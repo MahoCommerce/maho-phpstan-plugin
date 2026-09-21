@@ -2,10 +2,12 @@ parametersSchema:
     magentoRootPath: schema(string(), nullable())
     enforceMagicMethodDocBlock: bool()
     useLocalXml: bool()
+    ignoreErrorsInDeprecatedScope: bool()
 parameters:
     magentoRootPath: null # Deprecated
     enforceMagicMethodDocBlock: false
     useLocalXml: false
+    ignoreErrorsInDeprecatedScope: true
     scanDirectories:
         - mock/maho
         - mock/maho-phpstan-plugin
@@ -68,3 +70,11 @@ services:
         tags:
             - phpstan.parser.richParserNodeVisitor
             - phpstan.phpDoc.typeNodeResolverExtension
+
+    ## Ignore every error inside a deprecated class, or a template bound to one
+    -
+        class: Maho\PHPStanPlugin\Analyser\DeprecatedScopeIgnoreErrorExtension
+        arguments:
+            ignoreErrorsInDeprecatedScope: %ignoreErrorsInDeprecatedScope%
+        tags:
+            - phpstan.ignoreErrorExtension
