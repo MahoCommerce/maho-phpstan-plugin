@@ -169,6 +169,14 @@ final class PublicMethodReflection implements ExtendedMethodReflection
     }
 
     /**
+     * @return array<string, TrinaryLogic>
+     */
+    public function getPureUnlessParameterPassedParameters(): array
+    {
+        return $this->originalMethod->getPureUnlessParameterPassedParameters();
+    }
+
+    /**
      * @return list<\PHPStan\Reflection\AttributeReflection>
      */
     public function getAttributes(): array
