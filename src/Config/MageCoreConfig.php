@@ -57,6 +57,9 @@ final class MageCoreConfig
             'Mage_Core_Model_Layout::getBlockSingleton'
                 => fn(string $alias): string => $this->getConfig()->getBlockClassName($alias),
 
+            'Mage::getService'
+                => fn(string $alias): string => $this->getConfig()->getServiceClassName($alias),
+
             'Mage::helper',
             'Mage_Core_Block_Abstract::helper',
             'Mage_Core_Model_Config::getHelperInstance',

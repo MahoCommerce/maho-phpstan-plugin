@@ -95,6 +95,15 @@ class Mage_Core_Model_Config
     }
 
     /**
+     * Retrieve service class name
+     *
+     * @return string
+     */
+    public function getServiceClassName(string $serviceAlias)
+    {
+    }
+
+    /**
      * Retrieve resource helper class name
      *
      * @return string|false
