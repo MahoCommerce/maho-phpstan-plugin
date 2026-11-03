@@ -23,6 +23,7 @@ final class DeprecatedScopeIgnoreErrorExtension implements IgnoreErrorExtension
         private readonly bool $ignoreErrorsInDeprecatedScope,
     ) {}
 
+    #[\Override]
     public function shouldIgnore(Error $error, Node $node, Scope $scope): bool
     {
         if (!$this->ignoreErrorsInDeprecatedScope) {
