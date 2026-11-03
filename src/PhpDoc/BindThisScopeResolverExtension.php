@@ -60,13 +60,12 @@ final class BindThisScopeResolverExtension extends NodeVisitorAbstract implement
         }
 
         $typeName = $typeNode->type;
-        if ($typeName->name !== self::GENERIC_TYPE) {
+        if (!$typeName instanceof IdentifierTypeNode || $typeName->name !== self::GENERIC_TYPE) {
             return null;
         }
 
-        /** @var IdentifierTypeNode[] */
         $arguments = $typeNode->genericTypes;
-        if (count($arguments) !== 1) {
+        if (count($arguments) !== 1 || !$arguments[0] instanceof IdentifierTypeNode) {
             return null;
         }
 
