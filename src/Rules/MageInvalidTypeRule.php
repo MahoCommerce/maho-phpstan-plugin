@@ -25,11 +25,13 @@ final class MageInvalidTypeRule implements Rule
 {
     public function __construct(private ExprPrinter $exprPrinter, private MageCoreConfig $mageCoreConfig) {}
 
+    #[\Override]
     public function getNodeType(): string
     {
         return Node\Expr\CallLike::class;
     }
 
+    #[\Override]
     public function processNode(Node $methodCall, Scope $scope): array
     {
         if (!$methodCall instanceof Node\Expr\MethodCall && !$methodCall instanceof Node\Expr\StaticCall) {

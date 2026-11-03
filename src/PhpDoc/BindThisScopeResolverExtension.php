@@ -31,6 +31,7 @@ final class BindThisScopeResolverExtension extends NodeVisitorAbstract implement
     private const PHPDOC_PATTERN = '/@var\s+((\\\?\w+)+)\s+\$this/';
     private const PHPDOC_REPLACE = '@var ' . self::GENERIC_TYPE . '<$1> $this';
 
+    #[\Override]
     public function beforeTraverse(array $nodes)
     {
         foreach ($nodes as $node) {
@@ -53,6 +54,7 @@ final class BindThisScopeResolverExtension extends NodeVisitorAbstract implement
         return null;
     }
 
+    #[\Override]
     public function resolve(TypeNode $typeNode, NameScope $nameScope): ?Type
     {
         if (!$typeNode instanceof GenericTypeNode) {
@@ -72,16 +74,19 @@ final class BindThisScopeResolverExtension extends NodeVisitorAbstract implement
         $className = $nameScope->resolveStringName($arguments[0]->name);
 
         return new class ($className) extends ObjectType {
+            #[\Override]
             public function getMethod(string $methodName, ClassMemberAccessAnswerer $scope): ExtendedMethodReflection
             {
                 return new PublicMethodReflection(parent::getMethod($methodName, $scope));
             }
 
+            #[\Override]
             public function getProperty(string $propertyName, ClassMemberAccessAnswerer $scope): ExtendedPropertyReflection
             {
                 return new PublicPropertyReflection(parent::getProperty($propertyName, $scope));
             }
 
+            #[\Override]
             public function getInstanceProperty(string $propertyName, ClassMemberAccessAnswerer $scope): ExtendedPropertyReflection
             {
                 return new PublicPropertyReflection(parent::getInstanceProperty($propertyName, $scope));

@@ -24,6 +24,7 @@ final class VarienObjectReflectionExtension implements MethodsClassReflectionExt
 
     public function __construct(private bool $enforceDocBlock, private ReflectionProvider $reflectionProvider) {}
 
+    #[\Override]
     public function hasMethod(ClassReflection $classReflection, string $methodName): bool
     {
         if (!in_array(substr($methodName, 0, 3), ['get', 'set', 'uns', 'has'], true)) {
@@ -61,6 +62,7 @@ final class VarienObjectReflectionExtension implements MethodsClassReflectionExt
         return true;
     }
 
+    #[\Override]
     public function getMethod(ClassReflection $classReflection, string $methodName): MethodReflection
     {
         $nativeMethod = match (substr($methodName, 0, 3)) {

@@ -4,11 +4,12 @@ includes:
     - vendor/phpstan/phpstan-deprecation-rules/rules.neon
 parameters:
     phpVersion:
-        min: 80200
-        max: 80499
+        min: 80500
+        max: 80599
     scanFiles:
         - mock/maho-phpstan-plugin/Mage.php
         - mock/maho-phpstan-plugin/DataObject.php
     paths:
         - src
     level: 10
+    checkMissingOverrideMethodAttribute: true
