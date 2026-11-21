@@ -1,6 +1,3 @@
-includes:
-    - fallback-mocks.php
-
 parametersSchema:
     magentoRootPath: schema(string(), nullable())
     enforceMagicMethodDocBlock: bool()
@@ -11,8 +8,6 @@ parameters:
     enforceMagicMethodDocBlock: false
     useLocalXml: false
     ignoreErrorsInDeprecatedScope: true
-    scanDirectories:
-        - mock/maho
 
 services:
     mageCoreConfig:
