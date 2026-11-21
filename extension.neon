@@ -8,9 +8,6 @@ parameters:
     enforceMagicMethodDocBlock: false
     useLocalXml: false
     ignoreErrorsInDeprecatedScope: true
-    scanDirectories:
-        - mock/maho
-        - mock/maho-phpstan-plugin
 
 services:
     mageCoreConfig:
