@@ -1,3 +1,6 @@
+includes:
+    - fallback-mocks.php
+
 parametersSchema:
     magentoRootPath: schema(string(), nullable())
     enforceMagicMethodDocBlock: bool()
@@ -10,7 +13,6 @@ parameters:
     ignoreErrorsInDeprecatedScope: true
     scanDirectories:
         - mock/maho
-        - mock/maho-phpstan-plugin
 
 services:
     mageCoreConfig:
